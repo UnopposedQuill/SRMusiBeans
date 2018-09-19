@@ -7,15 +7,15 @@ public class Artista extends Usuario {
     private ArrayList<Evento> eventosPropios;
     private ArrayList<Articulo> articulosPropios;
     private ArrayList<Disco> discosPropios;
-    private ArrayList<NoticiaArtista> noticiasPropias;
+    //private ArrayList<NoticiaArtista> noticiasPropias;
     private ArrayList<Calificacion> calificacionesPropias;
 
-    public Artista(String nombreUsuario, String contrasenha, String nombre) {
-        super(nombreUsuario, contrasenha, nombre);
+    public Artista(String email, String contrasenha, String nombre) {
+        super(email, contrasenha, nombre, TipoUsuario.ARTISTA);
         this.eventosPropios = new ArrayList<>();
         this.articulosPropios = new ArrayList<>();
         this.discosPropios = new ArrayList<>();
-        this.noticiasPropias = new ArrayList<>();
+        //this.noticiasPropias = new ArrayList<>();
         this.calificacionesPropias = new ArrayList<>();
     }
 
@@ -43,14 +43,6 @@ public class Artista extends Usuario {
         this.discosPropios = discosPropios;
     }
 
-    public ArrayList<NoticiaArtista> getNoticiasPropias() {
-        return noticiasPropias;
-    }
-
-    public void setNoticiasPropias(ArrayList<NoticiaArtista> noticiasPropias) {
-        this.noticiasPropias = noticiasPropias;
-    }
-
     public ArrayList<Calificacion> getCalificacionesPropias() {
         return calificacionesPropias;
     }
@@ -58,4 +50,14 @@ public class Artista extends Usuario {
     public void setCalificacionesPropias(ArrayList<Calificacion> calificacionesPropias) {
         this.calificacionesPropias = calificacionesPropias;
     }
+
+    /*
+    public ArrayList<NoticiaArtista> getNoticiasPropias() {
+        return noticiasPropias;
+    }
+
+    public void setNoticiasPropias(ArrayList<NoticiaArtista> noticiasPropias) {
+        this.noticiasPropias = noticiasPropias;
+    }
+    */
 }

@@ -4,7 +4,18 @@ import java.util.Date;
 
 public class NoticiaArtista extends Noticia {
 
-    public NoticiaArtista(String abstractNoticia, String descripcion, Date fechaPublicacion) {
+    private Artista artistaPublicador;
+
+    public NoticiaArtista(String abstractNoticia, String descripcion, Date fechaPublicacion, Artista artistaPublicador) {
         super(abstractNoticia, descripcion, fechaPublicacion);
+        this.artistaPublicador = artistaPublicador;
+    }
+
+    public Artista getArtistaPublicador() {
+        return artistaPublicador;
+    }
+
+    public void setArtistaPublicador(Artista artistaPublicador) {
+        this.artistaPublicador = artistaPublicador;
     }
 }

@@ -1,21 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Administrador extends Usuario {
 
-    private ArrayList <NoticiaAdministrador> noticiasPropias;
 
-    public Administrador(String nombreUsuario, String contrasenha, String nombre) {
-        super(nombreUsuario, contrasenha, nombre);
-        this.noticiasPropias = new ArrayList<>();
+    public Administrador(String email, String contrasenha, String nombre) {
+        super(email, contrasenha, nombre, TipoUsuario.ADMINISTRADOR);
     }
 
-    public ArrayList<NoticiaAdministrador> getNoticiasPropias() {
-        return noticiasPropias;
-    }
-
-    public void setNoticiasPropias(ArrayList<NoticiaAdministrador> noticiasPropias) {
-        this.noticiasPropias = noticiasPropias;
-    }
 }

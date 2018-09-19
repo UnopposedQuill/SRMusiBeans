@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".NoticiasCliente" />
+        <activity android:name=".MainActivityAdministrador" />
+        <activity android:name=".AdministratorHome" />
+        <activity android:name=".NoticiasArtista"></activity>
     </application>
 
 </manifest>

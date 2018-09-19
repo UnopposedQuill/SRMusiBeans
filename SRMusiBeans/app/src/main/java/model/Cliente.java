@@ -8,8 +8,8 @@ public class Cliente extends Usuario {
     //private ArrayList<NoticiaAdministrador> noticias;//removida por reducción
 
 
-    public Cliente(String nombreUsuario, String contrasenha, String nombre) {
-        super(nombreUsuario, contrasenha, nombre);
+    public Cliente(String email, String contrasenha, String nombre) {
+        super(email, contrasenha, nombre, TipoUsuario.CLIENTE);
         this.artistasFavoritos = new ArrayList<>();
     }
 

@@ -4,7 +4,18 @@ import java.util.Date;
 
 public class NoticiaAdministrador extends Noticia {
 
-    public NoticiaAdministrador(String abstractNoticia, String descripcion, Date fechaPublicacion) {
+    private Administrador administradorPublicador;
+
+    public NoticiaAdministrador(String abstractNoticia, String descripcion, Date fechaPublicacion, Administrador administradorPublicador) {
         super(abstractNoticia, descripcion, fechaPublicacion);
+        this.administradorPublicador = administradorPublicador;
+    }
+
+    public Administrador getAdministradorPublicador() {
+        return administradorPublicador;
+    }
+
+    public void setAdministradorPublicador(Administrador administradorPublicador) {
+        this.administradorPublicador = administradorPublicador;
     }
 }

@@ -3,6 +3,7 @@ package view;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 
@@ -32,6 +33,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Administrador;
+import model.Artista;
+import model.Cliente;
+import model.TipoUsuario;
+import model.Usuario;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -49,8 +56,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
+            //"foo@example.com:hello", "bar@example.com:world"
+            "banda@mybands.com:hello", "cliente@gmail.com:world", "administrador@mybands.com:probe"
     };
+
+    private static final Usuario[] DUMMY_USERS = {
+            new Artista("banda@mybands.com", "hello", "Banda1"),
+            new Administrador("administrador@mybands.com", "probe", "Admin1"),
+            new Cliente("cliente@gmail.com", "world", "Cliente1")
+    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -154,12 +169,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         boolean cancel = false;
         View focusView = null;
 
+        /*
+        Ya que tenemos una actividad dedicada a registrarse, esta sección ya no es necesaria
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
+        */
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
@@ -190,10 +208,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         return email.contains("@");
     }
 
+    /*
+    Ya no es necesario en esta actividad
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
+    */
 
     /**
      * Shows the progress UI and hides the login form.
@@ -293,6 +314,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         private final String mEmail;
         private final String mPassword;
+        private TipoUsuario tipoUsuario;//necesito guardar en algún sitio el tipo de usuario que inició sesión de manera exitosa
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -310,16 +332,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+            //Reviso todos los usuarios que conseguí de la base de datos, y los comparo respecto a las
+            //credenciales conseguidas
+            for(Usuario usuario: DUMMY_USERS){
+                if(usuario.getEmail().equals(this.mEmail) && usuario.getContrasenha().equals(this.mPassword)){
+                    this.tipoUsuario = usuario.getTipoUsuario();
+                    return true;//las credenciales coincidieron con alguno
                 }
             }
-
-            // TODO: register the new account here.
-            return true;
+            //ninguno coincidió: error
+            return false;
         }
 
         @Override
@@ -328,7 +350,31 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             showProgress(false);
 
             if (success) {
-                finish();
+                //finish();
+                //debo revisar a cuál actividad debo ir ahora.
+                switch(this.tipoUsuario){
+                    case ADMINISTRADOR:{
+                        Intent intento = new Intent(mLoginFormView.getContext(), AdministratorHome.class);
+                        //necesito pasar los parámetros del usuario, el más importante: el correo de la cuenta
+                        intento.putExtra("correo", mEmail);
+                        startActivityForResult(intento, 0);
+                        break;
+                    }
+                    case ARTISTA:{
+
+                        break;
+                    }
+                    case CLIENTE:{
+                        Intent intento = new Intent(mLoginFormView.getContext(), NoticiasCliente.class);
+                        //necesito pasar los parámetros del usuario, el más importante: el correo de la cuenta
+                        intento.putExtra("correo", mEmail);
+                        startActivityForResult(intento, 0);
+                        break;
+                    }
+                    default:{
+                        mEmailView.setError(getString(R.string.error_invalid_email));//error desconocido
+                    }
+                }
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
