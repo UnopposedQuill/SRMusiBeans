@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BasesDatos</string>
+    <string name="register">REGISTRAR</string>
+    <string name="name">Nombre</string>
+    <string name="email">Email</string>
+    <string name="password">contraseña</string>
+    <string name="btnRegistrar">Registrar</string>
+</resources>
