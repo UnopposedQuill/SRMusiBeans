@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,13 +30,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Administrador;
 import model.Artista;
 import model.Cliente;
+import model.SqlConection;
 import model.TipoUsuario;
 import model.Usuario;
 
@@ -76,7 +80,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-
+    private SqlConection connectionClass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,12 +105,24 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                connectionClass = SqlConection.getInstance();
+                try {
+                    Connection conn = connectionClass.getConnection();
+                    if (conn == null) {
+                        Toast.makeText(getBaseContext(), "No se pudo establecer la conexion", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getBaseContext(), "Conexión realizada correctamente", Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e) {
+                    Log.e("ERROR - ", e.getMessage());
+                }
                 attemptLogin();
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
     }
 
     private void populateAutoComplete() {
@@ -168,16 +184,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         boolean cancel = false;
         View focusView = null;
-
-        /*
-        Ya que tenemos una actividad dedicada a registrarse, esta sección ya no es necesaria
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-        */
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {

@@ -10,8 +10,8 @@ import java.sql.SQLException;
 public class SqlConection {
 
     private static SqlConection instance = null;
-    private static final String URL = "jdbc:jtds:sqlserver://DESKTOP-7D6FVNH;database=myBands;user=mybandsuser";
-    private static final String USER = "USERNAME";
+    private static final String URL = "jdbc:jtds:sqlserver://DESKTOP-7D6FVNH;databaseName=myBands;user=mybandsuser;";
+    private static final String USER = "S";
     private static final String PASS = "PASSWORD";
     private static Connection connection = null;
 

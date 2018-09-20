@@ -26,5 +26,10 @@
 
     <!-- Strings related to Client's Home -->
     <string name="titleClientHome">Bienvenido</string>
+    <string name="titleArtistHome">Bienvenido!</string>
+    <string name="add_news">Agregar Noticia</string>
+    <string name="action_visit_store">Visitar la tienda</string>
+    <string name="action_incoming_events">Próximos Eventos</string>
+    <string name="action_exit">Salir</string>
 
 </resources>

@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".NoticiasArtista">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/lblBienvenido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/titleArtistHome"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewNoticiasArtista"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalScrollbarPosition="right" >
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btnAgregarNoticia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_news" />
+
+    <Button
+        android:id="@+id/btnVisitarTienda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_visit_store" />
+
+    <Button
+        android:id="@+id/btnProximosEventos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_incoming_events" />
+
+    <Button
+        android:id="@+id/btnExitArtist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_exit" />
+</LinearLayout>
