@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="150dp"
     android:gravity="start">
 
     <TextView
@@ -20,23 +20,29 @@
         android:id="@+id/textViewDescripcion"
         android:layout_width="346dp"
         android:layout_height="55dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="57dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAbstract"
+        tools:layout_editor_absoluteX="16dp" />
 
     <TextView
         android:id="@+id/textViewAutor"
-        android:layout_width="88dp"
+        android:layout_width="97dp"
         android:layout_height="26dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="274dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewDescripcion"
+        app:layout_constraintStart_toEndOf="@+id/textViewAbstract" />
 
     <TextView
         android:id="@+id/textViewFechaPublicacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="123dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion"
+        tools:layout_editor_absoluteX="16dp" />
+
 </android.support.constraint.ConstraintLayout>

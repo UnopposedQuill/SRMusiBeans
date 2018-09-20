@@ -49,7 +49,7 @@ public class AdaptadorNoticias extends RecyclerView.Adapter <AdaptadorNoticias.V
         viewHolder.textViewAbstract.setText(this.mDataset.get(i).getAbstractNoticia());
         viewHolder.textViewDescripcion.setText(this.mDataset.get(i).getDescripcion());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        viewHolder.textViewAbstract.setText(sdf.format(this.mDataset.get(i).getFechaPublicacion()));
+        viewHolder.textViewFechaPublicacion.setText(sdf.format(this.mDataset.get(i).getFechaPublicacion()));
         switch (this.mDataset.get(i).getTipoNoticia()){
             case ADMINISTRADOR:{
                 viewHolder.textViewAutor.setText(((NoticiaAdministrador)this.mDataset.get(i)).getAdministradorPublicador().getNombre());
