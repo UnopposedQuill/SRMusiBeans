@@ -52,6 +52,7 @@ public class NoticiasCliente extends AppCompatActivity {
         noticias.add(new NoticiaAdministrador("Primer Mantenimiento", "El sistema ya tiene su primer periódo de mantenimiento establecido, estén al tanto para la publicación de la misma.", new Date(), new Administrador("administrador@mybands.com","probe","Administrador1")));
         noticias.add(new NoticiaArtista("Primer Disco", "Como bienvenida al sistema, les anunciamos que nuestro nuevo disco \"Recent Disadventure\" está ahora a la venta!", new Date(), new Artista("banda@mybands.com","hello","Banda1")));
         noticias.add(new NoticiaAdministrador("Bienvenida", "Bienvenidos al nuevo sistema de MyBands.", new Date(), new Administrador("administrador@mybands.com","probe","Administrador1")));
+        noticias.add(new NoticiaAdministrador("Bienvenida", "Bienvenidos al nuevo sistema de MyBands.", new Date(), new Administrador("administrador@mybands.com","probe","Administrador1")));
 
         //noticias.sort((noticia1, noticia2)->noticia1.getFechaPublicacion().getTime() < noticia2.getFechaPublicacion().getTime());
         this.mAdapter = new AdaptadorNoticias(noticias);
